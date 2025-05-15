@@ -1,10 +1,10 @@
 extends StaticBody2D
 
-@onready var collision_polygon := $CollisionPolygon2D
+@onready var collision_polygon := $CollisionPolygon2D 
 @onready var area2d = $Area2D
-@onready var door_open = $door_open
-@onready var door_close = $door_close
-@onready var closeddoor = $closedDoor
+@onready var door_open = $door_open #звук открытия
+@onready var door_close = $door_close #звук закрытия
+@onready var closeddoor = $closedDoor #спрайт закрытой двери
 var is_open := false
 var player_in_range = false
 
@@ -12,8 +12,8 @@ func _ready():
 	#get_tree().debug_collisions_hint = true #для дебага нужна чтобы подсвечивать коллизии 
 	area2d.body_entered.connect(_on_body_entered)
 	area2d.body_exited.connect(_on_body_exited)
-	collision_polygon.set_deferred("disabled", false)
-	closeddoor.visible = true
+	collision_polygon.set_deferred("disabled", false) #устанвка что дверь закрыта
+	closeddoor.visible = true #отображение, что дверь закрыта
 		
 func _on_body_entered(body):
 	if body.name == "Player":
